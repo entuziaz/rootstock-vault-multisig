@@ -1,45 +1,9 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/Users/jheikhei/Desktop/RSK Drafts/rsk-vault-multisig/contracts/Lock.sol": {
-      "lastModificationDate": 1748682676610,
-      "contentHash": "a5eb11f8999b5800b56dc6f6f445d069",
-      "sourceName": "contracts/Lock.sol",
-      "solcConfig": {
-        "version": "0.8.20",
-        "settings": {
-          "evmVersion": "paris",
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "Lock"
-      ]
-    },
     "/Users/jheikhei/Desktop/RSK Drafts/rsk-vault-multisig/contracts/Vault.sol": {
-      "lastModificationDate": 1748601145337,
-      "contentHash": "4292df3080429c7c63ef2d2a3c0eb25f",
+      "lastModificationDate": 1750531895916,
+      "contentHash": "8367f3cece31050fb815192c98a885a0",
       "sourceName": "contracts/Vault.sol",
       "solcConfig": {
         "version": "0.8.20",
