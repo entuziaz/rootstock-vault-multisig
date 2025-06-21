@@ -1,7 +1,7 @@
 #  Multisignature Vault Powered by Safe on the Rootstock Network
 
-This project demonstrates how to implement multisignature functionality using Safe on a vault.  
-It consists of a Viem-powered Next.js frontend, a backend, and a vault contract.
+This project demonstrates how to implement multisignature functionalities using [Safe](safe.global) on a vault deployed on the [Rootstock](http://rootstock.io/) network.  
+It consists of a vault contract deployed to the Rootstock testnet, a Viem-powered Next.js frontend that uses Viem to interact with deployed contracts, and backend that uses Safe to handle multisignature key management.
 
 ## Setup
 Install dependencies for the Hardhat and backend components from the project root:
