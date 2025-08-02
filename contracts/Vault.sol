@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity 0.8.24;
 
 contract Vault {
     address public safe;
@@ -18,7 +18,8 @@ contract Vault {
     function withdraw(address payable recipient, uint256 amount) external {
         require(msg.sender == safe, "Only Safe can withdraw");
         require(address(this).balance >= amount, "Insufficient funds");
-        recipient.transfer(amount);
+        (bool success, ) = recipient.call{value: amount}("");
+        require(success, "Transfer failed");
         emit Withdrawn(recipient, amount);
     }
 

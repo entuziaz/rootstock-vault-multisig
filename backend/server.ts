@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-  origin: process.env.FRONTEND_ORIGIN || 'http://localhost:3000',
+  origin: process.env.FRONTEND_ORIGIN,
   credentials: true 
 }));
 
@@ -52,7 +52,7 @@ app.post('/proposeTransaction', async (req: Request<{}, {}, TransactionRequest>,
     ]);
 
     // Setup Env Variables
-    const RPC_URL = process.env.RSK_RPC_URL
+    const RPC_URL = process.env.RSK_RPC_URL || 'https://public-node.testnet.rsk.co'; 
     const SAFE_ADDRESS = ethers.getAddress(process.env.SAFE_ADDRESS!);
     const OWNER_1_ADDRESS_FROM = process.env.OWNER_1_PUBLIC_KEY
     const OWNER_1_ADDRESS = ethers.getAddress(OWNER_1_ADDRESS_FROM!)

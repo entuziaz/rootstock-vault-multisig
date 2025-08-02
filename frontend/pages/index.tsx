@@ -77,6 +77,16 @@ export default function Home() {
       return;
     }
 
+    if (!ethers.isAddress(recipient)) {
+      alert("Invalid recipient address.");
+      return;
+    }
+
+    if (isNaN(Number(withdrawAmount)) || parseFloat(withdrawAmount) <= 0) {
+      alert("Amount must be a positive number.");
+      return;
+    }
+
     try {
       const response = await fetch("http://localhost:5001/proposeTransaction", {
         method: "POST",
