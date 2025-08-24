@@ -42,10 +42,7 @@ app.post('/proposeTransaction', async (req: Request<{}, {}, TransactionRequest>,
     }
 
     const amount = value.toString();
-    console.log("Amount in Ether: ", amount.toString()); 
     
-
-
     const encodedData = vaultInterface.encodeFunctionData("withdraw", [
       to,
       amount
@@ -62,7 +59,7 @@ app.post('/proposeTransaction', async (req: Request<{}, {}, TransactionRequest>,
     // Initialize the API Kit 
     const apiKit = new SafeApiKit({
       chainId: BigInt(process.env.CHAIN_ID!),
-      txServiceUrl: 'https://transaction-testnet.safe.rootstock.io/api'
+      txServiceUrl: process.env.SAFE_TX_SERVICE_URL || 'https://transaction-testnet.safe.rootstock.io/api'
     }); 
     console.log('✅ 1. Safe API Kit initialized.');
 

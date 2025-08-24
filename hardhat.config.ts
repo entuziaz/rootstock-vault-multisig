@@ -10,7 +10,7 @@ const config: HardhatUserConfig = {
           chainId: 31, // Rootstock Testnet
         },
     },
-    solidity: "0.8.20",
+    solidity: "0.8.28",
 };
 
 export default config;
