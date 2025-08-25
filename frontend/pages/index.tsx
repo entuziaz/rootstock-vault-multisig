@@ -13,9 +13,36 @@ export default function Home() {
 
   const vaultAddress = process.env.NEXT_PUBLIC_VAULT_ADDRESS as string;
 
+ // Ensure user is on Rootstock Testnet (chainId 31)
+  const ensureCorrectNetwork = async () => {
+    if (!window.ethereum) return false;
+
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    const { chainId } = await provider.getNetwork();
+
+    if (chainId !== BigInt(31)) {
+      try {
+        await window.ethereum.request({
+          method: "wallet_switchEthereumChain",
+          params: [{ chainId: "0x1f" }], // 31 in hex
+        });
+        return true;
+      } catch (switchError: any) {
+        console.error("Chain switch failed:", switchError);
+        alert("Please switch to Rootstock Testnet (chainId 31).");
+        return false;
+      }
+    }
+
+    return true;
+  };
+
   const connectWallet = async () => {
     if (window.ethereum) {
       try {
+        const ok = await ensureCorrectNetwork();
+        if (!ok) return;
+
         await window.ethereum.request({ method: "eth_requestAccounts" });
         const provider = new ethers.BrowserProvider(window.ethereum);
         const signer = await provider.getSigner();
@@ -53,6 +80,9 @@ export default function Home() {
       return;
     }
 
+    const ok = await ensureCorrectNetwork();
+    if (!ok) return;
+
     try {
       const vault = new ethers.Contract(
         vaultAddress,
@@ -64,7 +94,8 @@ export default function Home() {
       });
       await tx.wait();
       await fetchVaultBalance();
-      alert("Deposit successful!");
+      alert(`Deposit successful! 
+View on Blockscout: https://rootstock-testnet.blockscout.com/tx/${tx.hash}`);
     } catch (error) {
       console.error("Deposit error:", error);
       alert("Failed to deposit.");
@@ -87,6 +118,9 @@ export default function Home() {
       return;
     }
 
+    const ok = await ensureCorrectNetwork();
+    if (!ok) return;
+
     try {
       const response = await fetch("http://localhost:5001/proposeTransaction", {
         method: "POST",
@@ -105,6 +139,11 @@ export default function Home() {
 
       alert("Withdrawal proposed successfully!");
       console.log("Proposal response:", data);
+
+      if (data.txHash) {
+        alert(`Withdrawal proposed! 
+        View on Blockscout: https://rootstock-testnet.blockscout.com/tx/${data.txHash}`);
+      }
     } catch (err) {
       console.error("Proposal error:", err);
       alert("Failed to propose withdrawal. Check the console for details.");
