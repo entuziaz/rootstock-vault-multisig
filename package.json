@@ -4,20 +4,28 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy": "hardhat run scripts/deploy.ts --network rskTestnet",
+    "verify": "hardhat verify --network rskTestnet",
+    "dev:server": "ts-node --esm backend/server.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@nomicfoundation/hardhat-verify": "^3.0.0",
+    "@typechain/hardhat": "^9.1.0",
+    "@types/chai": "^4.3.20",
     "@types/cors": "^2.8.18",
     "@types/express": "^5.0.2",
+    "@types/mocha": "^10.0.10",
+    "chai": "^4.5.0",
     "dotenv": "^16.5.0",
-    "express": "^5.1.0",
-    "hardhat": "^2.24.1",
+    "hardhat": "^2.19.0",
     "ts-node": "^10.9.2",
+    "typechain": "^8.3.2",
     "typescript": "^5.8.3"
   },
   "dependencies": {
