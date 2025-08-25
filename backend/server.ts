@@ -1,8 +1,15 @@
-import express, { Request, Response } from 'express';
+// import express, { Request, Response } from 'express';
+import express from 'express';
+import type { Request, Response } from 'express';
+
 import { ethers } from 'ethers';
 import SafeApiKit from '@safe-global/api-kit';
 import Safe from '@safe-global/protocol-kit';
-import { MetaTransactionData, OperationType } from '@safe-global/types-kit';
+import { OperationType } from '@safe-global/types-kit';
+import type { MetaTransactionData } from '@safe-global/types-kit';
+
+
+
 import cors from 'cors';
 
 import dotenv from 'dotenv';
@@ -125,5 +132,3 @@ app.post('/proposeTransaction', async (req: Request<{}, {}, TransactionRequest>,
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-
