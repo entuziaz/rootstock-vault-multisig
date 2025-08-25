@@ -8,6 +8,8 @@ contract Vault {
     event Withdrawn(address indexed recipient, uint256 amount);
 
     constructor(address _safe) {
+        require(_safe != address(0), "Zero Safe address");
+
         safe = _safe;
     }
 
