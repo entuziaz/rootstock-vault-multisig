@@ -66,7 +66,7 @@ npx hardhat verify --network rootstockTestnet <DEPLOYED_VAULT_ADDRESS> <YOUR_SAF
 
 ## 5. Start Backend Server
 ```bash
-npm run dev:server
+tsx backend/server.ts
 ```
 
 ## 6. Start Frontend Development Server
